@@ -26,7 +26,6 @@
  ******************************************************************************/
 
 #include <msp430.h>
-#include <legacymsp430.h>
 
 #include "uart.h"
 
@@ -81,7 +80,8 @@ void uart_puts(const char *str)
      while(*str) uart_putc(*str++);
 }
 
-interrupt(USCIAB0RX_VECTOR) USCI0RX_ISR(void)
+#pragma vector=USCIAB0RX_VECTOR
+__interrupt USCI0RX_ISR(void)
 {
 	if(uart_rx_isr_ptr != 0L) {
 		(uart_rx_isr_ptr)(UCA0RXBUF);

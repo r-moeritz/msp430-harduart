@@ -5,17 +5,18 @@
 ##
 
 # compiler prefix
-PREFIX		?= msp430-
+PREFIX		?= msp430-elf-
 
-CC			 = $(PREFIX)gcc
-LD			 = $(PREFIX)gcc
+CC		 = $(PREFIX)gcc
+LD		 = $(PREFIX)gcc
 OBJCOPY		 = $(PREFIX)objcopy
 OBJDUMP		 = $(PREFIX)objdump
+SUPPORT_FILE_DIR = $(abspath ../../../../Programs/msp430-gcc/include)
 
-INCDIR		+= -I./include 
+INCDIR		+= -I$(SUPPORT_FILE_DIR) -I./include 
 CFLAGS		+= -Os -mmcu=msp430g2553 -g -Wall -Wextra $(INCDIR) 
 
-LIBDIR		 =  
+LIBDIR		 = -L$(SUPPORT_FILE_DIR)
 LIBS		 =  
 LDFLAGS		+= -mmcu=msp430g2553 $(LIBDIR) $(LIBS) 
 
@@ -87,7 +88,7 @@ HDR = $(wildcard include/*.h)
 style: 
 	$(STYLER) $(STYLERFLAGS) $(SRC) 
 	$(STYLER) $(STYLERFLAGS) $(HDR) 
-	
+
 clean:
 	rm -f *.o
 	rm -f *.d
