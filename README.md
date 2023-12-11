@@ -64,7 +64,7 @@ Usage
 ------------
 
 Connecting your Launchpad should give you a new serial device
-"/dev/ttyACM0". Connect to this port at 9600 bauds - e.g. by using
+`/dev/ttyACM0`. Connect to this port at 9600 bauds - e.g. by using
 screen:
 
     screen /dev/ttyACM0 9600
